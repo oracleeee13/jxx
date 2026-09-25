@@ -98,7 +98,6 @@
     });
   });
 
-  // bintang kecil di latar
   for(var i=0;i<18;i++){
     var st=document.createElement("i");
     st.className="star";
@@ -108,7 +107,6 @@
     stars.appendChild(st);
   }
 
-  // confetti
   function size(){cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;}
   size();addEventListener("resize",size);
 
@@ -153,7 +151,7 @@
   });
 
 
-  // ===== game tiup lilin =====
+  // lilin
   var scene=document.getElementById("cakeScene"), wrap=document.getElementById("cakeWrap"),
       candles=[].slice.call(scene.querySelectorAll(".candle")), N=candles.length,
       micBtn=document.getElementById("micBtn"), holdBtn=document.getElementById("holdBtn"),
@@ -169,7 +167,7 @@
   function updateGlow(){wrap.style.setProperty("--lit",(N-out)/N);}
   function ensureLoop(){if(!gLoop){last=performance.now();gLoop=requestAnimationFrame(frame);}}
 
-  // muncul saat di-scroll: lilin menyala satu per satu
+
   if("IntersectionObserver" in window){
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){if(e.isIntersecting){scene.classList.add("seen");io.disconnect();}});
@@ -181,7 +179,6 @@
     scene.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
   });
 
-  // membaca kekuatan tiupan dari mikrofon
   function readMic(now){
     if(!an) return 0;
     an.getByteTimeDomainData(data);
@@ -285,7 +282,6 @@
     setMsg("Make a wish, then blow out the candles.");
   });
 
-  // ===== surat cinta =====
   (function(){
     var lscene=document.getElementById("letterScene");
     if(!lscene) return;
@@ -321,7 +317,6 @@
     }
   })();
 
-  // ===== kucing bawa bunga =====
   (function(){
     var cscene=document.getElementById("catScene");
     if(!cscene) return;
@@ -442,7 +437,6 @@
     }
   })();
 
-  // tampilkan kartu setelah PIN benar
   document.addEventListener("pin:ok",function(){
     gate.style.display="none";
     card.style.display="block";
