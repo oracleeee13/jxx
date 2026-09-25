@@ -161,7 +161,9 @@
       msg=document.getElementById("status"), more=document.getElementById("more"),
       order=[2,1,3,0,4].filter(function(x){return x<N;}), T=.55,
       energy=0, out=0, level=0, micLvl=0, holdLvl=0, holding=false, finished=false,
-      micOn=false, actx=null, an=null, data=null, stream=null, base=0, calUntil=0, gLoop=0, last=0;
+      micOn=false, actx=null, an=null, data=null, stream=null, base=0, calUntil=0, gLoop=0, last=0,
+      // Naikkan angka ini kalau masih kurang peka, turunkan kalau terlalu sensitif ke suara ambient.
+      MIC_GAIN=6, MIC_NOISE_MULT=1.2, MIC_OFFSET=.008, MIC_RANGE=.10;
 
   function setMsg(t){msg.textContent=t;}
   function updateGlow(){wrap.style.setProperty("--lit",(N-out)/N);}
@@ -187,7 +189,7 @@
     for(var k=0;k<data.length;k++){var v=(data[k]-128)/128;sum+=v*v;}
     var rms=Math.sqrt(sum/data.length);
     if(now<calUntil){base=base?base*.9+rms*.1:rms;return 0;}
-    return Math.max(0,Math.min(1,(rms-base*1.6-.02)/.18));
+    return Math.max(0,Math.min(1,(rms-base*MIC_NOISE_MULT-MIC_OFFSET)/MIC_RANGE));
   }
 
   function snuff(idx){
@@ -209,7 +211,7 @@
     level=Math.max(micLvl,holdLvl);
     fill.style.transform="scaleX("+level.toFixed(3)+")";
     if(!finished){
-      if(level>.12) energy+=level*dt; else energy=Math.max(out*T,energy-.12*dt);
+      if(level>.09) energy+=level*dt; else energy=Math.max(out*T,energy-.12*dt);
       candles.forEach(function(c,i){
         if(c.classList.contains("out")) return;
         var dir=i%2?1:-1, lean=level>.06?dir*(level*18+Math.random()*level*14):0;
@@ -235,9 +237,10 @@
       stream=s;actx=new AC();
       if(actx.resume) actx.resume();
       var src=actx.createMediaStreamSource(s);
+      var gainNode=actx.createGain();gainNode.gain.value=MIC_GAIN;
       an=actx.createAnalyser();an.fftSize=1024;
       data=new Uint8Array(an.fftSize);
-      src.connect(an);
+      src.connect(gainNode);gainNode.connect(an);
       micOn=true;base=0;calUntil=performance.now()+700;
       micBtn.textContent="Mic active";micBtn.disabled=true;
       setMsg("Hold on, the mic is calibrating…");
