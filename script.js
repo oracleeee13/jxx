@@ -357,13 +357,19 @@
         kissClosing=document.getElementById("kissClosing"), replayBtn=document.getElementById("replayBtn"),
         kissTimer=null, kissSpawned=0;
 
-    function spawnKiss(){
+    var isSmallScreen=window.matchMedia&&window.matchMedia("(max-width:600px)").matches,
+        isCoarsePointer=window.matchMedia&&window.matchMedia("(pointer:coarse)").matches,
+        isMobileKiss=isSmallScreen||isCoarsePointer,
+        kissBreatheEvery=isMobileKiss?3:1; // di HP, hanya 1 dari 3 gambar yang terus "bernapas" (animasi infinite)
+
+    function spawnKiss(idx){
       var img=document.createElement("img");
       img.className="kiss-img";img.src="kiss.png";img.alt="";
       img.style.setProperty("--x",(Math.random()*100)+"%");
       img.style.setProperty("--y",(Math.random()*100)+"%");
       img.style.setProperty("--s",(56+Math.random()*84)+"px");
       img.style.setProperty("--r",(Math.random()*54-27).toFixed(0)+"deg");
+      if(idx%kissBreatheEvery!==0) img.style.animation="none"; // matikan animasi infinite utk sebagian besar elemen di HP
       kissField.appendChild(img);
       requestAnimationFrame(function(){requestAnimationFrame(function(){img.classList.add("in");});});
     }
@@ -376,17 +382,17 @@
 
     function startKissRain(){
       if(!kissField||kissTimer) return;
-      var target=160;
+      var target=isMobileKiss?70:160, perTick=isMobileKiss?1:2, tickMs=isMobileKiss?45:35;
       if(reduce){
-        for(kissSpawned=0;kissSpawned<target;kissSpawned++) spawnKiss();
+        for(kissSpawned=0;kissSpawned<target;kissSpawned++) spawnKiss(kissSpawned);
         showClosing();
         return;
       }
       kissTimer=setInterval(function(){
-        spawnKiss();spawnKiss();
-        kissSpawned+=2;
+        for(var i=0;i<perTick;i++) spawnKiss(kissSpawned+i);
+        kissSpawned+=perTick;
         if(kissSpawned>=target){clearInterval(kissTimer);kissTimer=null;showClosing();}
-      },35);
+      },tickMs);
     }
 
     if(catBtn){
