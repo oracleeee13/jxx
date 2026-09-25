@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Greeting Card</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500&family=Jost:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loadingScreen" aria-hidden="true">
+  <svg class="load-heart" viewBox="0 0 32 28" aria-hidden="true">
+    <path d="M16 27C16 27 2 18.5 2 9.5C2 4.8 5.8 1 10.5 1C13 1 15 2.2 16 4.1C17 2.2 19 1 21.5 1C26.2 1 30 4.8 30 9.5C30 18.5 16 27 16 27Z"/>
+  </svg>
+  <p class="load-text">loading<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+</div>
+<div class="stars" id="stars" aria-hidden="true"></div>
+<main>
+  <section id="gate" aria-label="Enter PIN">
+    <div class="stage" id="stage">
+      <div class="cat-row happy">
+        <img class="cat" src="cat1.jpeg" alt="Mr. Dense the cat" width="72" height="85">
+        <p class="bubble">don't tell me you forgot Mr. Dense</p>
+      </div>
+      <div class="cat-row sad">
+        <img class="cat2" src="cat2.jpeg" alt="Sad Mr. Dense the cat" width="72" height="81">
+        <p class="bubble">YOU FORGOTTT?!! I knew it, YOU DONT LOVE ME ANYMORE💔</p>
+      </div>
+      <div class="cat-row hint">
+        <img class="cat5" src="cat5.jpeg" alt="Unimpressed cat" width="72" height="72">
+        <p class="bubble">TRY AGAIN, using year-month-day</p>
+      </div>
+    </div>
+    <p class="hint" id="hint" role="status" aria-live="polite">Enter the 6-digit PIN</p>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div class="pad" id="pad"></div>
+  </section>
+  <section id="card" aria-label="Greeting card">
+    <div class="scene first">
+      <h1 class="wish" id="wish" aria-label="HAPPY BIRTHDAY ALEXANDER" aria-hidden="true">
+      <span class="l1" data-t="HAPPY BIRTHDAY"></span>
+      <span class="l2" data-t="ALEXANDER"></span>
+    </h1>
+    <div class="gift-wrap">
+      <div class="flash" aria-hidden="true"></div>
+      <button class="gift" id="gift" type="button" aria-label="Open the gift">
+        <svg viewBox="0 0 200 220" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+          <g id="body">
+            <ellipse cx="100" cy="210" rx="62" ry="5" fill="rgba(255,126,185,.14)" stroke="none"/>
+            <rect x="30" y="104" width="140" height="102" rx="6" fill="#14060e"/>
+            <ellipse id="inner" cx="100" cy="106" rx="62" ry="8" fill="#ff7eb9" stroke="none"/>
+            <rect x="90" y="104" width="20" height="102" fill="currentColor" stroke="none" opacity=".9"/>
+          </g>
+          <g id="lid">
+            <path d="M100 76 C70 26 34 46 60 72 C72 82 92 80 100 76Z" fill="rgba(255,126,185,.12)"/>
+            <path d="M100 76 C130 26 166 46 140 72 C128 82 108 80 100 76Z" fill="rgba(255,126,185,.12)"/>
+            <rect x="20" y="72" width="160" height="36" rx="6" fill="#14060e"/>
+            <rect x="90" y="72" width="20" height="36" fill="currentColor" stroke="none"/>
+            <circle cx="100" cy="72" r="8" fill="currentColor" stroke="none"/>
+          </g>
+        </svg>
+      </button>
+    </div>
+    <p class="tap" id="tap">Tap the gift</p>
+      <button class="more" id="more" type="button" aria-label="Scroll down to the birthday cake">
+        <span>scroll down</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+    <div class="scene cake-scene" id="cakeScene">
+      <h2 class="make">make a wish</h2>
+      <p class="status" id="status" role="status" aria-live="polite">Make a wish, then blow out the candles.</p>
+      <div class="cake-wrap" id="cakeWrap" role="img" aria-label="Birthday cake with five candles">
+        <div class="cake-glow" aria-hidden="true"></div>
+        <svg viewBox="0 40 260 228" fill="none" stroke="#ff7eb9" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+          <ellipse cx="130" cy="250" rx="114" ry="10" fill="rgba(255,126,185,.08)"/>
+          <rect x="28" y="170" width="204" height="76" rx="10" fill="#14060e"/>
+          <path d="M28 180Q28 170 38 170H222Q232 170 232 180V184Q215 196 198 184Q181 196 164 184Q147 196 130 184Q113 196 96 184Q79 196 62 184Q45 196 28 184Z" fill="rgba(255,126,185,.2)" stroke-width="2"/>
+          <circle cx="52" cy="218" r="4" fill="#ff7eb9" stroke="none"/><circle cx="78" cy="218" r="4" fill="#ff7eb9" stroke="none"/><circle cx="104" cy="218" r="4" fill="#ff7eb9" stroke="none"/><circle cx="130" cy="218" r="4" fill="#ff7eb9" stroke="none"/><circle cx="156" cy="218" r="4" fill="#ff7eb9" stroke="none"/><circle cx="182" cy="218" r="4" fill="#ff7eb9" stroke="none"/><circle cx="208" cy="218" r="4" fill="#ff7eb9" stroke="none"/>
+          <rect x="62" y="112" width="136" height="58" rx="10" fill="#14060e"/>
+          <path d="M62 122Q62 112 72 112H188Q198 112 198 122V124Q181 136 164 124Q147 136 130 124Q113 136 96 124Q79 136 62 124Z" fill="rgba(255,126,185,.2)" stroke-width="2"/>
+          <circle cx="92" cy="152" r="3.5" fill="#ff7eb9" stroke="none"/><circle cx="130" cy="152" r="3.5" fill="#ff7eb9" stroke="none"/><circle cx="168" cy="152" r="3.5" fill="#ff7eb9" stroke="none"/>
+        <g class="candle" style="--k:0"><g transform="translate(84,0)">
+          <rect x="-4" y="80" width="8" height="32" rx="2" fill="#ff7eb9" stroke="none"/>
+          <path d="M-4 92l8-4M-4 102l8-4" stroke="#14060e" stroke-width="2" stroke-linecap="butt"/>
+          <path d="M0 80V74" stroke-width="1.6"/>
+          <g transform="translate(0,74)">
+            <path class="smoke" d="M0 -2C-5 -12 5 -20 0 -30"/>
+            <g class="flame"><g class="fl">
+              <path d="M0 -20C7 -11 8 -4 0 2C-8 -4 -7 -11 0 -20Z" fill="#ff7eb9" stroke="none"/>
+              <path d="M0 -11C3 -7 3.5 -3 0 0C-3.5 -3 -3 -7 0 -11Z" fill="#fff" stroke="none"/>
+            </g></g>
+          </g>
+        </g></g>
+        <g class="candle" style="--k:1"><g transform="translate(107,0)">
+          <rect x="-4" y="80" width="8" height="32" rx="2" fill="#ff7eb9" stroke="none"/>
+          <path d="M-4 92l8-4M-4 102l8-4" stroke="#14060e" stroke-width="2" stroke-linecap="butt"/>
+          <path d="M0 80V74" stroke-width="1.6"/>
+          <g transform="translate(0,74)">
+            <path class="smoke" d="M0 -2C-5 -12 5 -20 0 -30"/>
+            <g class="flame"><g class="fl">
+              <path d="M0 -20C7 -11 8 -4 0 2C-8 -4 -7 -11 0 -20Z" fill="#ff7eb9" stroke="none"/>
+              <path d="M0 -11C3 -7 3.5 -3 0 0C-3.5 -3 -3 -7 0 -11Z" fill="#fff" stroke="none"/>
+            </g></g>
+          </g>
+        </g></g>
+        <g class="candle" style="--k:2"><g transform="translate(130,0)">
+          <rect x="-4" y="80" width="8" height="32" rx="2" fill="#ff7eb9" stroke="none"/>
+          <path d="M-4 92l8-4M-4 102l8-4" stroke="#14060e" stroke-width="2" stroke-linecap="butt"/>
+          <path d="M0 80V74" stroke-width="1.6"/>
+          <g transform="translate(0,74)">
+            <path class="smoke" d="M0 -2C-5 -12 5 -20 0 -30"/>
+            <g class="flame"><g class="fl">
+              <path d="M0 -20C7 -11 8 -4 0 2C-8 -4 -7 -11 0 -20Z" fill="#ff7eb9" stroke="none"/>
+              <path d="M0 -11C3 -7 3.5 -3 0 0C-3.5 -3 -3 -7 0 -11Z" fill="#fff" stroke="none"/>
+            </g></g>
+          </g>
+        </g></g>
+        <g class="candle" style="--k:3"><g transform="translate(153,0)">
+          <rect x="-4" y="80" width="8" height="32" rx="2" fill="#ff7eb9" stroke="none"/>
+          <path d="M-4 92l8-4M-4 102l8-4" stroke="#14060e" stroke-width="2" stroke-linecap="butt"/>
+          <path d="M0 80V74" stroke-width="1.6"/>
+          <g transform="translate(0,74)">
+            <path class="smoke" d="M0 -2C-5 -12 5 -20 0 -30"/>
+            <g class="flame"><g class="fl">
+              <path d="M0 -20C7 -11 8 -4 0 2C-8 -4 -7 -11 0 -20Z" fill="#ff7eb9" stroke="none"/>
+              <path d="M0 -11C3 -7 3.5 -3 0 0C-3.5 -3 -3 -7 0 -11Z" fill="#fff" stroke="none"/>
+            </g></g>
+          </g>
+        </g></g>
+        <g class="candle" style="--k:4"><g transform="translate(176,0)">
+          <rect x="-4" y="80" width="8" height="32" rx="2" fill="#ff7eb9" stroke="none"/>
+          <path d="M-4 92l8-4M-4 102l8-4" stroke="#14060e" stroke-width="2" stroke-linecap="butt"/>
+          <path d="M0 80V74" stroke-width="1.6"/>
+          <g transform="translate(0,74)">
+            <path class="smoke" d="M0 -2C-5 -12 5 -20 0 -30"/>
+            <g class="flame"><g class="fl">
+              <path d="M0 -20C7 -11 8 -4 0 2C-8 -4 -7 -11 0 -20Z" fill="#ff7eb9" stroke="none"/>
+              <path d="M0 -11C3 -7 3.5 -3 0 0C-3.5 -3 -3 -7 0 -11Z" fill="#fff" stroke="none"/>
+            </g></g>
+          </g>
+        </g></g>
+        </svg>
+      </div>
+      <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+      <div class="controls">
+        <button class="btn primary" id="micBtn" type="button">Blow via mic</button>
+        <button class="btn" id="holdBtn" type="button">Hold to blow</button>
+      </div>
+      <button class="btn" id="again" type="button">Light again</button>
+      <button class="next-hint" id="toLetter" type="button" aria-label="Scroll down to read the letter">
+        <span>read the letter</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+    <div class="scene letter-scene" id="letterScene">
+      <div class="letter-wrap">
+        <div class="lhearts" id="lhearts" aria-hidden="true"></div>
+        <svg class="lheart-icon" viewBox="0 0 32 28" aria-hidden="true">
+          <path d="M16 27C16 27 2 18.5 2 9.5C2 4.8 5.8 1 10.5 1C13 1 15 2.2 16 4.1C17 2.2 19 1 21.5 1C26.2 1 30 4.8 30 9.5C30 18.5 16 27 16 27Z"/>
+        </svg>
+        <h2 class="letter-title">a letter for you</h2>
+        <div class="letter-paper">
+          <p class="ltr">Happy birthday to the person I love the most.<span class="hi">❤</span></p>
+          <p class="ltr">I hope life is always kind to you and brings you all the beautiful things you deserve. I hope you're always surrounded by people who truly love you, care for you, and remind you just how special you are.</p>
+          <p class="ltr">I love you more than I could ever put into words. Thank you for coming into my life and becoming such a beautiful part of it. You are the love of my life, my motivation, my strength, and one of the greatest blessings God has ever given me.</p>
+          <p class="ltr">I'm so grateful for you, for every moment, every conversation, every little thing that makes you who you are. Loving you is something I will always be thankful for.</p>
+          <p class="ltr">No matter where life takes us, I hope you always know that there will always be a place for you in my heart.</p>
+          <p class="ltr">I will love you, always and forever.<span class="hi">❤</span></p>
+          <p class="sign">— Sarah</p>
+        </div>
+        <button class="next-hint letter-next" id="toCat" type="button" aria-label="Scroll down for another surprise">
+          <span>psst, there’s more</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="scene cat-scene" id="catScene">
+      <div class="cat-flowers" id="catFlowers" aria-hidden="true"></div>
+      <div class="cat-row3">
+        <div class="cat3-stage" id="cat3Stage">
+          <button class="cat3-btn" id="cat3Btn" type="button" aria-label="Touch the cat">
+            <img class="cat3" src="cat3.jpeg" alt="Cute cat holding flowers" width="210" height="210">
+            <span class="tap-badge" id="tapBadge" aria-hidden="true">👆 touch me</span>
+          </button>
+          <div class="cat4-pop" aria-hidden="true">
+            <img class="cat4" src="cat4.jpeg" alt="Shy cat covering its face" width="210" height="210">
+          </div>
+        </div>
+        <p class="bubble3" id="bubble3">
+          <span class="b3l">FLOWER</span>
+          <span class="b3l">FOR MY</span>
+          <span class="b3l accent">CUTIE PIE</span>
+        </p>
+      </div>
+      <p class="umm-pop" id="ummPop" aria-hidden="true"><span class="umm-text">ummmm....</span></p>
+    </div>
+  </section>
+</main>
+<div class="kiss-overlay" id="kissOverlay" aria-hidden="true">
+  <div class="kiss-field" id="kissField"></div>
+  <div class="kiss-closing" id="kissClosing" aria-hidden="true">
+    <p class="kc-title">the end.</p>
+    <p class="kc-sub">happy birthday, my love 🤍</p>
+    <button class="btn primary" id="replayBtn" type="button">Play again</button>
+  </div>
+</div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
