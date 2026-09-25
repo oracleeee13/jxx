@@ -389,13 +389,20 @@ body.unlocked .stars{opacity:1}
 .kiss-overlay.show{opacity:1;pointer-events:auto}
 .kiss-field{position:absolute;inset:0;overflow:hidden}
 .kiss-img{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:auto;
-  opacity:0;transform:translate(-50%,-50%) scale(.25) rotate(var(--r,0deg));
-  filter:drop-shadow(0 4px 10px rgba(0,0,0,.28));pointer-events:none;
+  opacity:0;transform:translate3d(-50%,-50%,0) scale(.25) rotate(var(--r,0deg));
+  will-change:transform,opacity;backface-visibility:hidden;pointer-events:none;
   transition:opacity .28s ease,transform .38s cubic-bezier(.3,1.8,.4,1)}
-.kiss-img.in{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg));
+.kiss-img.in{opacity:1;transform:translate3d(-50%,-50%,0) scale(1) rotate(var(--r,0deg));
   animation:kissBreathe 3.4s ease-in-out .6s infinite}
-@keyframes kissBreathe{0%,100%{transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg))}
-  50%{transform:translate(-50%,-50%) scale(1.06) rotate(var(--r,0deg))}}
+@keyframes kissBreathe{0%,100%{transform:translate3d(-50%,-50%,0) scale(1) rotate(var(--r,0deg))}
+  50%{transform:translate3d(-50%,-50%,0) scale(1.06) rotate(var(--r,0deg))}}
+/* di HP, matikan drop-shadow (mahal saat dipakai di banyak elemen sekaligus) */
+@media (max-width:600px){
+  .kiss-img{filter:none}
+}
+@media (min-width:601px){
+  .kiss-img{filter:drop-shadow(0 4px 10px rgba(0,0,0,.28))}
+}
 
 .kiss-closing{position:absolute;left:50%;top:50%;z-index:2;max-width:82vw;text-align:center;
   padding:28px 32px;border:1.5px solid var(--pink);border-radius:10px;
