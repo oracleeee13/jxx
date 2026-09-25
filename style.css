@@ -415,7 +415,6 @@ body.unlocked .stars{opacity:1}
 .kc-sub{margin:0 0 22px;font-family:var(--head);font-weight:300;font-size:.82rem;
   letter-spacing:.08em;color:var(--pink-soft)}
 
-/* ===== penyesuaian layar mobile ===== */
 @media (max-width:400px){
   main{padding:20px 16px}
   .cat-row3{flex-direction:column;align-items:center;gap:16px}
